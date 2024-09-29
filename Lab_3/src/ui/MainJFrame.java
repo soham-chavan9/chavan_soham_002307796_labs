@@ -94,7 +94,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnAccountMngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountMngActionPerformed
         // TODO add your handling code here:
-        AccountMngWorkAreaJPanel panel = new AccountMngWorkAreaJPanel(userProcessContainer);
+        AccountMngWorkAreaJPanel panel = new AccountMngWorkAreaJPanel(userProcessContainer, accountDirectory);
         userProcessContainer.add("AccountMngWorkAreaJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -4,6 +4,8 @@
  */
 package ui.AccountManager;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author sohamchavan
@@ -44,6 +46,11 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         lblTitle.setText("View Account");
 
         btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         lblRoutingNumber.setText("Routing Number");
 
@@ -116,6 +123,11 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
                 .addContainerGap(178, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

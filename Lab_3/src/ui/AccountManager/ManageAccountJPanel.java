@@ -4,17 +4,25 @@
  */
 package ui.AccountManager;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.AccountDirectory;
+
 /**
  *
  * @author sohamchavan
  */
 public class ManageAccountJPanel extends javax.swing.JPanel {
+    JPanel userProcessContainer;
+    AccountDirectory accountDirectory;
 
     /**
      * Creates new form ManageAccountJPanel
      */
-    public ManageAccountJPanel() {
+    public ManageAccountJPanel(JPanel container,AccountDirectory directory) {
         initComponents();
+        userProcessContainer = container;
+        accountDirectory = directory;
     }
 
     /**
@@ -36,6 +44,11 @@ public class ManageAccountJPanel extends javax.swing.JPanel {
         txtSearchBox = new javax.swing.JTextField();
 
         btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         lblTitle.setText("Manage Accounts");
 
@@ -114,6 +127,13 @@ public class ManageAccountJPanel extends javax.swing.JPanel {
                 .addContainerGap(366, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+      CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+      layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
