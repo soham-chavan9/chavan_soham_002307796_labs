@@ -42,7 +42,7 @@ public class AccountMngWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCreateAccount)
                     .addComponent(btnManageAccount))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(742, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateAccount, btnManageAccount});
@@ -54,7 +54,7 @@ public class AccountMngWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnCreateAccount)
                 .addGap(18, 18, 18)
                 .addComponent(btnManageAccount)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
