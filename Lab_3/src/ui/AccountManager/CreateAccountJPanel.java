@@ -5,7 +5,9 @@
 package ui.AccountManager;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Account;
 import model.AccountDirectory;
 
 /**
@@ -44,7 +46,7 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
         txtAccountNumber = new javax.swing.JTextField();
         txtBankName = new javax.swing.JTextField();
         txtBalance = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -65,7 +67,12 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
 
         lblBalance.setText("Balance");
 
-        jButton1.setText("Create Account");
+        btnCreate.setText("Create Account");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,7 +102,7 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
                             .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(207, 207, 207)
-                            .addComponent(jButton1))))
+                            .addComponent(btnCreate))))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
 
@@ -128,7 +135,7 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
                     .addComponent(lblBalance)
                     .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnCreate)
                 .addContainerGap(165, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -140,10 +147,47 @@ public class CreateAccountJPanel extends javax.swing.JPanel {
       layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        int balance;
+        
+        String routingNumber = txtRoutingNumber.getText();
+        String accountNumber = txtAccountNumber.getText();
+        String bankName = txtBankName.getText();
+        
+        if(routingNumber. isBlank() || bankName. isBlank() || accountNumber. isBlank())
+        {
+            JOptionPane. showMessageDialog(this, "All fields are mandatory.", "Error", JOptionPane.ERROR_MESSAGE);
+        // pause until the user closes the dialog.
+            return;
+        }
+        
+        try {
+            balance = Integer.parseInt(txtBalance.getText());
+        } catch (Exception e) {
+            JOptionPane. showMessageDialog (null, "please check the balance input.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        Account a = accountDirectory.addAccount ();
+        
+            a.setRoutingNumber(routingNumber);
+            a.setAccountNumber (accountNumber);
+            a.setBankName (bankName) ;
+            a.setBalance (balance) ;
+            
+            JOptionPane. showMessageDialog (this, "Account successfully created.", "Information", JOptionPane. INFORMATION_MESSAGE);
+            
+            txtRoutingNumber.setText ("");
+            txtAccountNumber. setText ("");
+            txtBankName. setText("");
+            txtBalance.setText ("");
+    }//GEN-LAST:event_btnCreateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCreate;
     private javax.swing.JLabel lblAccountNumber;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblBankName;

@@ -5,18 +5,32 @@
 package ui.AccountManager;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import model.Account;
+import model.AccountDirectory;
 
 /**
  *
  * @author sohamchavan
  */
 public class ViewAccountJPanel extends javax.swing.JPanel {
+    
+    private JPanel userProcessContainer;
+    private AccountDirectory accountDirectory;
+    private Account account;
 
     /**
      * Creates new form ViewAccountJPanel
      */
-    public ViewAccountJPanel() {
+    public ViewAccountJPanel(JPanel userProcessContainer, AccountDirectory accountDirectory, Account account) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        
+        refreshTextFields();
+        setViewMode();
+        
     }
 
     /**
@@ -40,6 +54,11 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -59,6 +78,11 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         lblBankName.setText("Bank Name");
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,8 +150,37 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-     
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        
+        String routingNumber = txtRoutingNumber.getText ();
+        String accountNumber = txtAccountNumber.getText ();
+        String bankName = txtBankName. getText();
+    
+        if (routingNumber. isBlank() || accountNumber. isBlank() || bankName. isBlank())
+        {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory."); 
+            return;
+        }
+
+        account.setRoutingNumber(routingNumber); 
+        account.setAccountNumber (accountNumber);
+        account.setBankName (bankName) ;
+
+        JOptionPane. showMessageDialog(null, "Account successfully updated.", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        setViewMode ();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        setEditMode();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -142,4 +195,30 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtBankName;
     private javax.swing.JTextField txtRoutingNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTextFields () {
+        
+        txtRoutingNumber.setText(account.getRoutingNumber());
+        txtAccountNumber.setText (account.getAccountNumber());
+        txtBankName. setText(account.getBankName()) ;
+    }
+    
+    private void setViewMode() {
+        
+        txtRoutingNumber.setEnabled (false); txtAccountNumber.setEnabled (false); txtBankName.setEnabled (false);
+
+        btnSave. setEnabled (false);
+        btnUpdate. setEnabled (true) ;
+    }
+
+    private void setEditMode () {
+        
+        txtRoutingNumber.setEnabled(true);
+        txtBankName.setEnabled (true);
+        txtAccountNumber.setEnabled(true);
+        
+        
+        btnUpdate.setEnabled (false);
+        btnSave.setEnabled(true);
+    }
 }
