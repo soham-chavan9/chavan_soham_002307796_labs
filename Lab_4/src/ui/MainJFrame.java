@@ -88,7 +88,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    
     private void populateDemoData() {
      Supplier bestbuy= supplierDirectory.addSupplier();
      bestbuy.setSupplyName("Best Buy");
@@ -99,12 +99,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void setLoginScreen() {
         LoginScreen ls = new LoginScreen(mainWorkArea,supplierDirectory);
-     mainWorkArea.add("LoginScreen",ls);
+        mainWorkArea.add("LoginScreen",ls);
      
-     CardLayout layout = (CardLayout) mainWorkArea.getLayout();
-     layout.next(mainWorkArea);
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.next(mainWorkArea);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JPanel mainWorkArea;
 }

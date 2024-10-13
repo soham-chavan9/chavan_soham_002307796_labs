@@ -6,6 +6,8 @@ package ui.supplier;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JPanel;
+import model.Supplier;
 import ui.LoginScreen;
 
 /**
@@ -13,14 +15,18 @@ import ui.LoginScreen;
  * @author sohamchavan
  */
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
+         JPanel mainWorkArea;
+         Supplier supplier;
 
     /**
      * Creates new form SupplierWorkAreaJPanel
      */
-    public SupplierWorkAreaJPanel() {
+    public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier) {
         initComponents();
+        this.mainWorkArea = mainWorkArea;
         
-       
+        this.supplier = supplier;
+        if (supplier != null) lblWelcome.setText("Welcome to Lab 4, "+supplier.getSupplyName());
     }
 
     /**
