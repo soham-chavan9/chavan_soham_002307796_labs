@@ -173,7 +173,6 @@ public class LoginScreen extends javax.swing.JPanel {
     public void populateSupplierCombo() {
        
      cmbSuppliers.removeAllItems();
-     
      for(Supplier supplier : supplierDirectory.getSupplierList() ){
          cmbSuppliers.addItem(supplier);
      }

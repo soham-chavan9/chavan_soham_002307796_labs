@@ -46,5 +46,4 @@ public class Supplier {
     public String toString() {
         return supplyName;
     }
-    
 }

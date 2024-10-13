@@ -195,6 +195,11 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSupplierProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierProfileActionPerformed
         // TODO add your handling code here:
+        UpdateSupplier us = new UpdateSupplier(workArea, supplier); 
+        workArea.add("AddSupplier", us);
+    
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea);
     }//GEN-LAST:event_btnSupplierProfileActionPerformed
 
     private void PerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerformanceActionPerformed
@@ -204,6 +209,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         //        CardLayout layout = (CardLayout)workArea.getLayout();
         //        layout.next(userProcessContainer);
     }//GEN-LAST:event_PerformanceActionPerformed
+    
+    public String toString() {
+        return "Supplier";
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

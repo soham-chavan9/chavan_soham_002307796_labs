@@ -33,11 +33,11 @@ public class ProductCatalog {
         productCatalog.remove(p);
     }
     
-    public Product searchProduct(int id) {
+    public Product searchProduct(int prodId) {
 
-        for(Product p : productCatalog) {
-            if(p.getId() == id) {
-                return p;
+        for(Product product : productCatalog) {
+            if(product.getId() == prodId) {
+                return product;
             }
         }
         return null;
