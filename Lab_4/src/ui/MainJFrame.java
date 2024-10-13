@@ -4,17 +4,29 @@
  */
 package ui;
 
+import java.awt.CardLayout;
+import model.Supplier;
+import model.SupplierDirectory;
+
 /**
  *
  * @author sohamchavan
  */
 public class MainJFrame extends javax.swing.JFrame {
-
+    
+    SupplierDirectory supplierDirectory;
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        
+        supplierDirectory = new SupplierDirectory();
+        setSize(800,600);
+        setResizable(false);
+       
+        populateDemoData();
+        setLoginScreen();
     }
 
     /**
@@ -75,6 +87,22 @@ public class MainJFrame extends javax.swing.JFrame {
                 new MainJFrame().setVisible(true);
             }
         });
+    }
+
+    private void populateDemoData() {
+     Supplier bestbuy= supplierDirectory.addSupplier();
+     bestbuy.setSupplyName("Best Buy");
+     
+     Supplier mustbuy= supplierDirectory.addSupplier();
+     mustbuy.setSupplyName("Must Buy");
+    }
+
+    private void setLoginScreen() {
+        LoginScreen ls = new LoginScreen(mainWorkArea,supplierDirectory);
+     mainWorkArea.add("LoginScreen",ls);
+     
+     CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+     layout.next(mainWorkArea);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
