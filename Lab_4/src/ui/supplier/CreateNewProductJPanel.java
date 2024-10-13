@@ -4,17 +4,26 @@
  */
 package ui.supplier;
 
+import javax.swing.JPanel;
+import model.Supplier;
+import model.SupplierDirectory;
+
 /**
  *
  * @author sohamchavan
  */
 public class CreateNewProductJPanel extends javax.swing.JPanel {
+    
+            JPanel workArea;
+            Supplier supplier;
 
     /**
      * Creates new form CreateNewProductJPanel
      */
-    public CreateNewProductJPanel() {
+    public CreateNewProductJPanel(JPanel workArea, Supplier supplier) {
         initComponents();
+        this.workArea = workArea;
+        this.supplier = supplier;
     }
 
     /**

@@ -4,17 +4,24 @@
  */
 package ui.admin;
 
+import javax.swing.JPanel;
+import model.SupplierDirectory;
+
 /**
  *
  * @author sohamchavan
  */
 public class ManageSuppliers extends javax.swing.JPanel {
+    JPanel mainWorkArea;
+    SupplierDirectory supplierDirectory;
 
     /**
      * Creates new form ManageSuppliers
      */
-    public ManageSuppliers() {
+    public ManageSuppliers(JPanel mainWorkArea,SupplierDirectory supplierDirectory) {
         initComponents();
+        this.mainWorkArea = mainWorkArea;
+        this.supplierDirectory = supplierDirectory;
     }
 
     /**

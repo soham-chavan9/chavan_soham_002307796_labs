@@ -4,10 +4,20 @@
  */
 package ui.admin;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Image;
+import java.io.File;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.net.MalformedURLException;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Supplier;
 import model.SupplierDirectory;
 
@@ -27,6 +37,15 @@ public class AddSupplier extends javax.swing.JPanel {
      */
     public AddSupplier() {
         initComponents();
+        this.workArea = workArea;
+        this.supplierDirectory = supplierDirectory;
+        
+        FileFilter jpegFileFilter = new  FileNameExtensionFilter("JPEG file", "jpeg","jpg");
+        FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png","png");
+        
+        fileChooser.addChoosableFileFilter(jpegFileFilter);
+        fileChooser.addChoosableFileFilter(pngFilter);
+        fileChooser.setFileFilter(pngFilter);
     }
 
     /**
@@ -196,17 +215,42 @@ public class AddSupplier extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        backAction();
+        workArea.remove(this);
+        Component[] componentArray = workArea.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageSuppliers manageSuppliersJPanel = (ManageSuppliers) component;
+        manageSuppliersJPanel.refreshTable();
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea)
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
         // TODO add your handling code here:
+        int returnVal = fileChooser.showOpenDialog(this);
+        
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+         File file = fileChooser.getSelectedFile();
+         URL url;
+         
+         try{
+         url = file.toURI().toURL();
+         logoImage = new ImageIcon(url);
+         logoImage = new ImageIcon(logoImage.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH));
+         
+         imgLogo.setIcon(logoImage);
+        }
+         catch (MalformedURLException ex){
+             Logger.getLogger(this.getName()).log(Level.SEVERE,null,ex);
+             
+         }
+        }
 
     }//GEN-LAST:event_btnAttachActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-
+        logoImage = null;
+        imgLogo.setIcon(logoImage);
     }//GEN-LAST:event_btnRemoveActionPerformed
 
 
