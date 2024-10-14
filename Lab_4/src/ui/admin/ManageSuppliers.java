@@ -16,19 +16,31 @@ import model.SupplierDirectory;
  * @author sohamchavan
  */
 public class ManageSuppliers extends javax.swing.JPanel {
-     private JPanel userProcessContainer;
-    private SupplierDirectory supplierDirectory;
 
+    private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
     /**
      * Creates new form ManageSuppliers
      */
-    public ManageSuppliers(JPanel upc,SupplierDirectory sd) {
+    public ManageSuppliers(JPanel upc, SupplierDirectory sd) {
         initComponents();
         userProcessContainer = upc;
         supplierDirectory = sd;
         refreshTable();
     }
-
+    
+    public void refreshTable() {
+        
+        DefaultTableModel model = (DefaultTableModel)tblSuppliers.getModel();
+        model.setRowCount(0);
+        
+        for(Supplier s : supplierDirectory.getSupplierList()) {
+            Object row[] = new Object[1];
+            row[0] = s;
+           // row[1] = s.getProductCatalog().getProductCount() == 0 ? "None" : s.getProductCatalog().getProductCount();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,16 +183,4 @@ public class ManageSuppliers extends javax.swing.JPanel {
     private javax.swing.JLabel lblSupplierList;
     private javax.swing.JTable tblSuppliers;
     // End of variables declaration//GEN-END:variables
-
-    private void refreshTable() {
-        DefaultTableModel model = (DefaultTableModel)tblSuppliers.getModel();
-        model.setRowCount(0);
-        
-        for(Supplier s : supplierDirectory.getSupplierList()) {
-            Object row[] = new Object[1];
-            row[0] = s;
-           // row[1] = s.getProductCatalog().getProductCount() == 0 ? "None" : s.getProductCatalog().getProductCount();
-            model.addRow(row);
-        }
-    }
 }

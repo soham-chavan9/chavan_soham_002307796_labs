@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Rushabh
+ * @author sohamchavan
  */
 public class Supplier {
     

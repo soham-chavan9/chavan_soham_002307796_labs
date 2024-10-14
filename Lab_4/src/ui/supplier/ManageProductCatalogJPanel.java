@@ -16,23 +16,38 @@ import model.Supplier;
  * @author sohamchavan
  */
 public class ManageProductCatalogJPanel extends javax.swing.JPanel {
-    
-            JPanel workArea;
-            Supplier supplier;
 
+    JPanel workArea;
+    Supplier supplier;
     /**
      * Creates new form ManageProductCatalogJPanel
      */
     public ManageProductCatalogJPanel(JPanel workArea, Supplier supplier) {
         initComponents();
+        
         this.workArea = workArea;
         this.supplier = supplier;
         
-        if(supplier.getLogoImage() != null) imgLogo.setIcon(supplier.getLogoImage());
+        if (supplier.getLogoImage() != null) imgLogo.setIcon(supplier.getLogoImage());
         else imgLogo.setText("No Logo");
        
         refreshTable();
     }
+    
+    public void refreshTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
+        model.setRowCount(0);
+
+        for (Product p : supplier.getProductCatalog().getProductCatalog()) {
+            Object row[] = new Object[3];
+            row[0] = p;
+            row[1] = p.getId();
+            row[2] = p.getPrice();
+            model.addRow(row);
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -222,17 +237,4 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblProducts;
     // End of variables declaration//GEN-END:variables
-
-    private void refreshTable() {
-        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
-        model.setRowCount(0);
-
-        for (Product p : supplier.getProductCatalog().getProductCatalog()) {
-            Object row[] = new Object[3];
-            row[0] = p;
-            row[1] = p.getId();
-            row[2] = p.getPrice();
-            model.addRow(row);
-        }
-    }
 }

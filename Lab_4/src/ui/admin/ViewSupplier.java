@@ -14,14 +14,14 @@ import model.Supplier;
  *
  * @author sohamchavan
  */
-public class ViewSuppliers extends javax.swing.JPanel {
+public class ViewSupplier extends javax.swing.JPanel {
     JPanel workArea;
     Supplier supplier;
 
     /**
      * Creates new form ViewSuppliers
      */
-    public ViewSuppliers(JPanel workArea, Supplier supplier) {
+    public ViewSupplier(JPanel workArea, Supplier supplier) {
         initComponents();
         
          this.workArea = workArea;
