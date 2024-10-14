@@ -27,7 +27,7 @@ public class Product {
         count++;
         id = count;
         
-        features = new ArrayList<Feature>();
+        features = new ArrayList<>();
         
     }
 

@@ -18,6 +18,7 @@ import model.Supplier;
 public class ManageProductCatalogJPanel extends javax.swing.JPanel {
 
     JPanel workArea;
+    Product product;
     Supplier supplier;
     /**
      * Creates new form ManageProductCatalogJPanel
@@ -27,6 +28,7 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
         
         this.workArea = workArea;
         this.supplier = supplier;
+        
         
         if (supplier.getLogoImage() != null) imgLogo.setIcon(supplier.getLogoImage());
         else imgLogo.setText("No Logo");
@@ -188,11 +190,10 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
             return;
         }
         Product selectedProduct = (Product) tblProducts.getValueAt(row, 0);
-        ViewProductDetailJPanel vpdjp = new ViewProductDetailJPanel (workArea, selectedProduct);
+        ViewProductDetailJPanel vpdjp = new ViewProductDetailJPanel (workArea, selectedProduct, supplier);
         workArea.add("ViewProductDetailJPanel", vpdjp);
         CardLayout layout = (CardLayout) workArea.getLayout();
         layout.next(workArea);
-
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed

@@ -26,12 +26,12 @@ import model.SupplierDirectory;
  * @author sohamchavan
  */
 public class AddSupplier extends javax.swing.JPanel {
+
     private JPanel workArea;
     private SupplierDirectory supplierDirectory;
     
     private final JFileChooser fileChooser = new JFileChooser();
     ImageIcon logoImage;
-
     /**
      * Creates new form AddSupplier
      */
@@ -40,12 +40,13 @@ public class AddSupplier extends javax.swing.JPanel {
         this.workArea = workArea;
         this.supplierDirectory = supplierDirectory;
         
-        FileFilter jpegFileFilter = new  FileNameExtensionFilter("JPEG file", "jpeg","jpg");
-        FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png","png");
+        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file", "jpg", "jpeg");
+        FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png", "png");
         
-        fileChooser.addChoosableFileFilter(jpegFileFilter);
         fileChooser.addChoosableFileFilter(pngFilter);
+        fileChooser.addChoosableFileFilter(jpegFilter);
         fileChooser.setFileFilter(pngFilter);
+        
     }
 
     /**

@@ -15,6 +15,7 @@ import ui.LoginScreen;
  * @author sohamchavan
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+    
     JPanel mainWorkArea;
     SupplierDirectory supplierDirectory;
     

@@ -4,6 +4,7 @@
  */
 package ui;
 
+
 import java.awt.CardLayout;
 import model.Supplier;
 import model.SupplierDirectory;
@@ -22,8 +23,8 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         
         supplierDirectory = new SupplierDirectory();
-        setSize(800,600);
-        setResizable(false);
+        setSize(1000,900);
+        setResizable(true);
        
         populateDemoData();
         setLoginScreen();
@@ -42,16 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout mainWorkAreaLayout = new javax.swing.GroupLayout(mainWorkArea);
-        mainWorkArea.setLayout(mainWorkAreaLayout);
-        mainWorkAreaLayout.setHorizontalGroup(
-            mainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        mainWorkAreaLayout.setVerticalGroup(
-            mainWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        mainWorkArea.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,17 +95,14 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     
     private void populateDemoData() {
-     Supplier bestbuy= supplierDirectory.addSupplier();
-     bestbuy.setSupplyName("Best Buy");
-     
-     Supplier mustbuy= supplierDirectory.addSupplier();
-     mustbuy.setSupplyName("Must Buy");
+     Supplier bestBuy = supplierDirectory.addSupplier();
+        bestBuy.setSupplyName("Best Buy");
+        bestBuy.getProductCatalog().addProduct().setName("Monitor");
     }
 
     private void setLoginScreen() {
-        LoginScreen ls = new LoginScreen(mainWorkArea,supplierDirectory);
-        mainWorkArea.add("LoginScreen",ls);
-     
+       LoginScreen ls = new LoginScreen(mainWorkArea, supplierDirectory);
+        mainWorkArea.add("LoginScreen", ls);
         CardLayout layout = (CardLayout) mainWorkArea.getLayout();
         layout.next(mainWorkArea);
     }

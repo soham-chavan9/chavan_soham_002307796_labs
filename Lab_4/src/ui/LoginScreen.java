@@ -159,39 +159,40 @@ public class LoginScreen extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
      private void populateRoleCombo() {
-        cmbRoles.removeAllItems();
         
-        AdminWorkAreaJPanel adminpanel = new AdminWorkAreaJPanel (mainWorkArea,supplierDirectory);
-        SupplierWorkAreaJPanel supplierpanel = new SupplierWorkAreaJPanel(mainWorkArea,selectedSupplier);
-        
-        cmbRoles.addItem(adminpanel);
-        cmbRoles.addItem(supplierpanel);
+      cmbRoles.removeAllItems();
       
+      AdminWorkAreaJPanel adminPanel = new AdminWorkAreaJPanel (mainWorkArea, supplierDirectory);
+      SupplierWorkAreaJPanel supplierPanel = new SupplierWorkAreaJPanel (mainWorkArea, selectedSupplier);
+      
+      cmbRoles.addItem(adminPanel);
+      cmbRoles.addItem(supplierPanel);
 
     }
 
     public void populateSupplierCombo() {
        
-     cmbSuppliers.removeAllItems();
-     for(Supplier supplier : supplierDirectory.getSupplierList() ){
-         cmbSuppliers.addItem(supplier);
-     }
+        cmbSuppliers.removeAllItems();
+        
+        for (Supplier supplier : supplierDirectory.getSupplierList()){
+            cmbSuppliers.addItem(supplier);
+        }
        
     }
 
     private void updateSupplierVisibility() {
-        if ((cmbRoles.getSelectedItem() == null) || (cmbRoles.getSelectedItem().getClass() == AdminWorkAreaJPanel.class)) {
+        
+        if ((cmbRoles.getSelectedItem() == null) || (cmbRoles.getSelectedItem().getClass() == AdminWorkAreaJPanel.class)){
             selectedSupplier = null;
             lblSupplier.setVisible(false);
             cmbSuppliers.setVisible(false);
             return;
         }
-
-        if (cmbRoles.getSelectedItem().getClass() == SupplierWorkAreaJPanel.class) {
+        
+        if (cmbRoles.getSelectedItem().getClass() == SupplierWorkAreaJPanel.class){
             lblSupplier.setVisible(true);
             cmbSuppliers.setVisible(true);
         }
-        
          //To change body of generated methods, choose Tools | Templates.
     }
 }

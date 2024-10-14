@@ -13,6 +13,7 @@ import java.io.File;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
@@ -27,17 +28,19 @@ public class UpdateSupplier extends javax.swing.JPanel {
     
     JPanel workArea;
     Supplier supplier;
-
+    JLabel lblWelcome;
+    
     private final JFileChooser fileChooser = new JFileChooser();
     ImageIcon logoImage;
     /**
      * Creates new form UpdateSupplier
      */
-    public UpdateSupplier(JPanel workArea, Supplier supplier) {
+    public UpdateSupplier(JPanel workArea, Supplier supplier, JLabel lblWelcome) {
         initComponents();
         
         this.workArea = workArea;
         this.supplier = supplier;
+        this.lblWelcome= lblWelcome;
         
         FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file", "jpg", "jpeg");
         FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png", "png");
@@ -50,7 +53,6 @@ public class UpdateSupplier extends javax.swing.JPanel {
         imgLogo.setIcon(this.supplier.getLogoImage());
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,6 +199,7 @@ public class UpdateSupplier extends javax.swing.JPanel {
 
     private void btnUpdateSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSupplierActionPerformed
         // TODO add your handling code here:
+        lblWelcome.setText("Welcome to Lab 4,"+txtName.getText());
         supplier.setSupplyName(txtName.getText());
         supplier.setLogoImage(logoImage);
 

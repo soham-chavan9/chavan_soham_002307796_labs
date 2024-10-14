@@ -106,24 +106,40 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
 
-        if (!idField.getText().isBlank()){
-            int prodId = Integer.parseInt(idField.getText());
-            Product foundProduct = supplier.getProductCatalog().searchProduct(prodId);
+        if (!idField.getText().isBlank()) {
+            try {
+                // Parse the Product ID from the text field
+                int prodId = Integer.parseInt(idField.getText());
 
-            if (foundProduct != null){
+                // Check if the supplier and product catalog are not null
+                if (supplier != null && supplier.getProductCatalog() != null) {
+                    Product foundProduct = supplier.getProductCatalog().searchProduct(prodId);
 
-                ViewProductDetailJPanel vpdjp = new ViewProductDetailJPanel (workArea, foundProduct);
-                workArea.add("ViewProductDetailJPanel", vpdjp);
-                CardLayout layout = (CardLayout) workArea.getLayout();
-                layout.next(workArea);
+                    // If the product is found, display its details
+                    if (foundProduct != null) {
+                        ViewProductDetailJPanel vpdjp = new ViewProductDetailJPanel(workArea, foundProduct, supplier);
+                        workArea.add("ViewProductDetailJPanel", vpdjp);
+                        CardLayout layout = (CardLayout) workArea.getLayout();
+                        layout.next(workArea);
+                    } else {
+                        // Show a warning message if the product is not found
+                        JOptionPane.showMessageDialog(null, "Product not found. Please check the input and try again.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else {
+                    // Show a warning if supplier or product catalog is null
+                    JOptionPane.showMessageDialog(null, "Supplier or Product Catalog is not initialized.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                // Clear the input field after the search
+                idField.setText("");
+
+            } catch (NumberFormatException e) {
+                // Handle invalid product ID input
+                JOptionPane.showMessageDialog(null, "Please enter a valid integer for the Product ID.", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-            else{
-                JOptionPane.showMessageDialog(null,"Product not found. Please check the input and try again.","Warning",JOptionPane.WARNING_MESSAGE);
-            }
-            idField.setText("");
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Please type the Product ID.","Warning",JOptionPane.WARNING_MESSAGE);
+        } else {
+            // Show a warning if the input field is empty
+            JOptionPane.showMessageDialog(null, "Please type the Product ID.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
