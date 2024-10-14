@@ -424,6 +424,8 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         btnRemoveFeature.setEnabled(true);
         btnAttach.setEnabled(true);
         btnRemove.setEnabled(true);
+        btnAddExistingFeature.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnRemoveFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFeatureActionPerformed
