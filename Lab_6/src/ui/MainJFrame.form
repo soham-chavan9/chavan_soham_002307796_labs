@@ -105,7 +105,9 @@
             <Component class="javax.swing.JButton" name="btnCustomer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Customer"/>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="enabled" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="true" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCustomerActionPerformed"/>

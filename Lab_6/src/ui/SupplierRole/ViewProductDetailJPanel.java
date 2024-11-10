@@ -3,6 +3,7 @@ package ui.SupplierRole;
 import java.awt.CardLayout;
 import ui.AdminRole.ManageSuppliersJPanel;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Product;
 
@@ -151,8 +152,16 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        product.setPrice(Integer.parseInt(txtPrice.getText()));
+        txtName.setEditable(false);
+        txtPrice.setEditable(false);
+        btnSave.setEnabled(false);
+        txtName.setEnabled(false);
+        txtPrice.setEnabled(false);
+        
+//        product.setPrice(Integer.parseInt(txtPrice.getText()));
+        product.setPrice(Double.parseDouble(txtPrice.getText()));
         product.setProdName(txtName.getText());
+        JOptionPane.showMessageDialog(this, "Details saved!", "Success", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSaveActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

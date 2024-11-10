@@ -28,8 +28,10 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public MainJFrame() {
         initComponents();
-        supplierDirectory = new SupplierDirectory();
-        setSize(830,600);
+        business = new Business();
+        supplierDirectory = business.getSupplierDirectory();
+        masterOrderList = business.getMasterOrderList();
+        setSize(830, 600);
     }
 
     /**
@@ -72,7 +74,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnCustomer.setText("Customer");
-        btnCustomer.setEnabled(false);
+        btnCustomer.setEnabled(true);
         btnCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCustomerActionPerformed(evt);
