@@ -195,13 +195,18 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
 
         int selectedRowIndex = tblProductCatalog.getSelectedRow();
 
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        Product s = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
-        supplier.getProductCatalog().removeProduct(s);
-        refreshTable();
+    if (selectedRowIndex < 0) {
+        JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
+    supplier.getProductCatalog().removeProduct(product);
+    refreshTable(); 
+
+    // Show message that product is deleted
+    JOptionPane.showMessageDialog(null, "Product deleted!", "Info", JOptionPane.INFORMATION_MESSAGE);              
+             
     }//GEN-LAST:event_btnDeleteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

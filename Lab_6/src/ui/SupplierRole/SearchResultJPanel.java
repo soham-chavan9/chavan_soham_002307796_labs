@@ -3,6 +3,7 @@ package ui.SupplierRole;
 import model.Product;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -134,10 +135,12 @@ public class SearchResultJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-        //txtId.setEditable(true);
+      //txtId.setEditable(true);
+//        txtName.setEnabled(false);
+//        txtPrice.setEnabled(false);
         txtName.setEditable(true);
         txtPrice.setEditable(true);
-        btnSave.setEnabled(true);
+        btnSave.setEnabled(true);    
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -151,8 +154,24 @@ public class SearchResultJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        product.setPrice(Integer.parseInt(txtPrice.getText()));
-        product.setProdName(txtName.getText());
+        try {
+      
+        product.setPrice(Double.parseDouble(txtPrice.getText()));
+        product.setProdName(txtName.getText()); 
+        
+        // Disable fields after saving
+        txtName.setEditable(false);
+        txtPrice.setEditable(false);
+        btnSave.setEnabled(false);
+        txtName.setEnabled(false);
+        txtPrice.setEnabled(false);
+        
+        
+        // Show a message indicating that details are saved
+        JOptionPane.showMessageDialog(this, "Details saved!", "Success", JOptionPane.INFORMATION_MESSAGE);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please enter a valid price.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnSaveActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
