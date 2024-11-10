@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author sohamchavan
  */
-class Order {
+public class Order {
     ArrayList<OrderItem> orderItemList;
 
     public Order() {

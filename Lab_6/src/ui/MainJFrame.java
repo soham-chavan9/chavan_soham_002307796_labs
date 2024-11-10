@@ -6,8 +6,11 @@
 package ui;
 
 import java.awt.CardLayout;
+import model.Business;
+import model.MasterOrderList;
 import model.SupplierDirectory;
 import ui.AdminRole.AdminWorkAreaJPanel;
+import ui.CustomerRole.CustomerWorkAreaJPanel;
 import ui.SupplierRole.LoginSupplierJPanel;
 
 /**
@@ -19,7 +22,9 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    Business business;
     SupplierDirectory supplierDirectory;
+    MasterOrderList masterOrderList;
     
     public MainJFrame() {
         initComponents();
@@ -139,7 +144,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-
+        CustomerWorkAreaJPanel cw = new CustomerWorkAreaJPanel(userProcessContainer, supplierDirectory, masterOrderList);
+        userProcessContainer.add("CustomerWorkAreaJPanel", cw);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**

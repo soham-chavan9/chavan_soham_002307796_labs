@@ -42,4 +42,8 @@ public class ProductCatalog {
         }
         return null;
     }
+    
+     public boolean isEmpty() {
+        return productCatalog.isEmpty();
+    }
 }
