@@ -30,7 +30,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     Order currentOrder;
 
     /** Creates new form BrowseProducts */
-    public BrowseProductsJPanel() {
+    public BrowseProductsJPanel(JPanel userProcessContainer, SupplierDirectory supplierDirectory, MasterOrderList masterOrderList) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -325,7 +325,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         }
 
         Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
-        ui.CustomerRole.ViewProductDetailJPanel vp = new ui.CustomerRole.ViewProductDetailJPanel(userProcessContainer, product);
+        ViewProductDetailJPanel vp = new ViewProductDetailJPanel(userProcessContainer, product);
         userProcessContainer.add("ViewProductDetailJPanel", vp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
