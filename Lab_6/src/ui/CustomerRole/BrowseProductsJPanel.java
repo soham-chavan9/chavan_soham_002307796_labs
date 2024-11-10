@@ -493,14 +493,62 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateCombo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        cmbSupplier.removeAllItems();
+
+        for (Supplier s : supplierDirectory.getSupplierlist()) {
+            cmbSupplier.addItem(s);
+        }
+
     }
 
     private void populateProductTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        if (selectedSupplier == null) {
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+
+        for (Product p : selectedSupplier.getProductCatalog().getProductcatalog()) {
+            Object row[] = new Object[4];
+            row[0] = p;
+            row[1] = p.getModelNumber();
+            row[2] = p.getPrice();
+            row[3] = p.getAvail();
+            model.addRow(row);
+        }
     }
 
     private void populateCartTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DefaultTableModel model = (DefaultTableModel) tblCart.getModel();
+        model.setRowCount(0);
+
+        for (OrderItem oi : currentOrder.getOrderItemList()) {
+            Object row[] = new Object[4];
+            row[0] = oi;
+            row[1] = oi.getSalePrice();
+            row[2] = oi.getQuantity();
+            row[3] = oi.getQuantity() * oi.getSalePrice();
+            model.addRow(row);
+        }
+    }
+    private void populateProductTable(String keyword) {
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+
+        for (Supplier s : supplierDirectory.getSupplierlist()) {
+
+            for (Product p : s.getProductCatalog().getProductcatalog()) {
+
+                if (p.getProdName().equalsIgnoreCase(keyword)) {
+                    Object row[] = new Object[4];
+                    row[0] = p;
+                    row[1] = p.getModelNumber();
+                    row[2] = p.getPrice();
+                    row[3] = p.getAvail();
+                    model.addRow(row);
+                }
+            }
+        }
     }
 }

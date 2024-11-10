@@ -13,6 +13,7 @@ import model.OrderItem;
  * @author Zerel
  */
 public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
+    
     JPanel userProcessContainer;
     OrderItem item;
     

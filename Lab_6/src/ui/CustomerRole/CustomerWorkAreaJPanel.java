@@ -10,18 +10,13 @@ import javax.swing.JPanel;
 import model.MasterOrderList;
 import model.SupplierDirectory;
 
-
-
-
-
-
-
 /**
  *
  * @author Rushabh
  */
 public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
-     JPanel userProcessContainer; 
+    
+    JPanel userProcessContainer; 
     SupplierDirectory supplierDirectory; 
     MasterOrderList masterOrderList;
 
